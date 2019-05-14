@@ -16,7 +16,7 @@ import android.content.IntentFilter
 import android.util.Log
 
 
-class MainActivity : AppCompatActivity() {
+class  MainActivity : AppCompatActivity() {
     private var msg = ""
     private var num = ""
     private var min = 0
