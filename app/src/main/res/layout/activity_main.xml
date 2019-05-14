@@ -7,13 +7,49 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-    <TextView
+    <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:inputType="text"
+            android:ems="10"
+            android:id="@+id/message" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="270dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="99dp" android:layout_marginStart="99dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="99dp" android:layout_marginRight="99dp" android:layout_marginBottom="150dp"
+            android:hint="Message"
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.9"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:ems="10"
+            android:id="@+id/number" app:layout_constraintTop_toTopOf="@+id/message"
+            android:layout_marginTop="270dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="99dp" android:layout_marginStart="99dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="99dp" android:layout_marginRight="99dp" android:layout_marginBottom="150dp"
+            app:layout_constraintBottom_toTopOf="@+id/minutes" android:hint="Number"
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.152"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/minutes" app:layout_constraintTop_toTopOf="@+id/number"
+            android:inputType="number"
+            android:layout_marginTop="270dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="99dp" android:layout_marginStart="99dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="99dp" android:layout_marginRight="99dp" android:layout_marginBottom="150dp"
+            app:layout_constraintBottom_toTopOf="@+id/button" android:hint="Minutes"
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.9"/>
+
+    <Button
+            android:text="Start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="319dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="161dp"
+            android:layout_marginStart="161dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="162dp" android:layout_marginRight="162dp"
+            android:background="@android:color/holo_blue_light"/>
 
 </android.support.constraint.ConstraintLayout>
