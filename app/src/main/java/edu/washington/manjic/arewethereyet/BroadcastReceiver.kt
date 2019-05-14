@@ -14,14 +14,13 @@ class BroadcastReceiver : BroadcastReceiver() {
 
         when (intent?.action) {
             MainActivity.BROADCAST -> {
-                Log.i(TAG, "here!!!!!!!!!!!!!!")
                 var phoneNum = intent.extras[TAR_PHONE_NUM] as String
                 val msg = intent.extras[MESSAGE] as String
                 if (phoneNum.length == 10) {
                     phoneNum = "(" + phoneNum.substring(0..2) + ") " + phoneNum.substring(3..5) + "-" + phoneNum.substring(6)
                 }
 
-                Toast.makeText(context, "$phoneNum : $msg", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Texting $phoneNum : $msg", Toast.LENGTH_SHORT).show()
             }
         }
     }

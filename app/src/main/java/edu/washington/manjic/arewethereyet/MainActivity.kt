@@ -37,7 +37,6 @@ class  MainActivity : AppCompatActivity() {
         val number = findViewById<EditText>(R.id.number)
         val minutes = findViewById<EditText>(R.id.minutes)
         val btn = findViewById<Button>(R.id.button)
-        btn.isEnabled = msg != "" && num != "" && min > 0
 
         alarmManager = applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
@@ -46,9 +45,7 @@ class  MainActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 if (s.toString() != msg) {
                     msg = s.toString()
-                    btn.isEnabled = msg != "" && num != "" && min > 0
                 }
-
             }
             override fun afterTextChanged(s: Editable) {}
         })
@@ -58,9 +55,7 @@ class  MainActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 if (s.toString() != num) {
                     num = s.toString()
-                    btn.isEnabled = msg != "" && num != "" && min > 0
                 }
-
             }
             override fun afterTextChanged(s: Editable) {}
         })
@@ -77,9 +72,7 @@ class  MainActivity : AppCompatActivity() {
                     minutes.setText(minStr)
                     minutes.setSelection(minStr.length)
                     minutes.addTextChangedListener(this)
-                    btn.isEnabled = msg != "" && num != "" && min > 0
                 }
-
             }
 
             override fun afterTextChanged(s: Editable) {}
@@ -113,7 +106,6 @@ class  MainActivity : AppCompatActivity() {
             } else {
                 alarmManager!!.cancel(PendingIntent.getBroadcast(applicationContext, 0,
                     Intent(BROADCAST), PendingIntent.FLAG_UPDATE_CURRENT))
-                Log.i(TAG, "Stopped")
                 btn.text = "Start"
             }
         }

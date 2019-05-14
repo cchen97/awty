@@ -10,6 +10,18 @@
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/minutes" app:layout_constraintTop_toTopOf="@+id/number"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="99dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="99dp"
+            app:layout_constraintBottom_toTopOf="@+id/button" android:hint="Minutes"
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.9"
+            android:layout_marginTop="10dp"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:inputType="text"
             android:ems="10"
             android:id="@+id/message" app:layout_constraintTop_toTopOf="parent"
@@ -30,18 +42,6 @@
             android:layout_marginEnd="99dp"
             app:layout_constraintBottom_toTopOf="@+id/minutes" android:hint="Number"
             app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.152"
-            android:layout_marginTop="10dp"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:id="@+id/minutes" app:layout_constraintTop_toTopOf="@+id/number"
-            android:inputType="number"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="99dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="99dp"
-            app:layout_constraintBottom_toTopOf="@+id/button" android:hint="Minutes"
-            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.9"
             android:layout_marginTop="10dp"/>
 
     <Button
