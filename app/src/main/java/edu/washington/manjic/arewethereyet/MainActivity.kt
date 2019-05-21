@@ -1,5 +1,6 @@
 package edu.washington.manjic.arewethereyet
 
+import android.Manifest
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -14,6 +15,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.util.Log
+import android.content.SharedPreferences
+import android.content.pm.PackageManager
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 
 
 class  MainActivity : AppCompatActivity() {
@@ -25,8 +30,22 @@ class  MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
+        if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                arrayOf(Manifest.permission.SEND_SMS),
+                1)
+        }
+        if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                arrayOf(Manifest.permission.READ_PHONE_STATE),
+                2)
+        }
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         val filter = IntentFilter()
         filter.addAction(BROADCAST)
@@ -87,20 +106,32 @@ class  MainActivity : AppCompatActivity() {
                     min <= 0 -> showErrorToast("You must enter a time (in minutes) to pause between messages.")
                     min == 0 -> showErrorToast("The time between messages cannot be zero.")
                     else -> {
-                        val intent = Intent(BROADCAST)
-                            .putExtra(BroadcastReceiver.MESSAGE, msg)
-                            .putExtra(BroadcastReceiver.TAR_PHONE_NUM, num)
-                        val pendingIntent = PendingIntent.getBroadcast(
-                            applicationContext,
-                            0,
-                            intent,
-                            PendingIntent.FLAG_UPDATE_CURRENT
-                        )
-                        alarmManager!!.setRepeating(RTC_WAKEUP, System.currentTimeMillis(),
-                            (min.toLong() * 60 * 1000),
-                            pendingIntent
-                        )
-                        btn.text = "Stop"
+                        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)
+                            != PackageManager.PERMISSION_GRANTED) {
+
+                            Toast.makeText(this, "No Permission to send the message", Toast.LENGTH_SHORT).show()
+
+                        }else{
+                            // Need to request SEND_SMS permission
+                            ActivityCompat.requestPermissions(this,
+                                arrayOf(Manifest.permission.SEND_SMS),
+                                1234)
+
+                            val intent = Intent(BROADCAST)
+                                .putExtra(BroadcastReceiver.MESSAGE, msg)
+                                .putExtra(BroadcastReceiver.TAR_PHONE_NUM, num)
+                            val pendingIntent = PendingIntent.getBroadcast(
+                                applicationContext,
+                                0,
+                                intent,
+                                PendingIntent.FLAG_UPDATE_CURRENT
+                            )
+                            alarmManager!!.setRepeating(RTC_WAKEUP, System.currentTimeMillis(),
+                                (min.toLong() * 60 * 1000),
+                                pendingIntent
+                            )
+                            btn.text = "Stop"
+                        }
                     }
                 }
             } else {
